@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>점심 선물상자 🎁 | 오늘 뭐 먹지?</title>
+<style>
+:root{
+  font-family:system-ui,-apple-system,"Malgun Gothic",sans-serif;
+  color:#eef3ff;
+  --bg-dark:#080b1b;
+  --bg-deep:#121938;
+  --violet:#8d5cff;
+  --pink:#ff73b8;
+  --cyan:#52e4ff;
+  --mint:#78ffd6;
+  --gold:#ffd76b;
+  --card:rgba(15,20,45,.62);
+  --card-strong:rgba(20,25,58,.78);
+  --line:rgba(173,196,255,.18);
+  --text:#eef3ff;
+  --sub:#bcc7e5;
+}
+*{box-sizing:border-box}
+html,body{min-height:100%}
+body{
+  margin:0;
+  color:var(--text);
+  background:
+    radial-gradient(circle at 18% 18%, rgba(151,89,255,.33), transparent 24%),
+    radial-gradient(circle at 82% 14%, rgba(60,190,255,.26), transparent 22%),
+    radial-gradient(circle at 70% 70%, rgba(255,100,190,.18), transparent 26%),
+    linear-gradient(180deg,#090b18 0%, #10142c 45%, #0d1022 100%);
+  overflow-x:hidden;
+}
+body::before,
+body::after{
+  content:"";
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:0;
+}
+body::before{
+  background:
+    radial-gradient(2px 2px at 8% 12%, rgba(255,255,255,.95) 60%, transparent 62%),
+    radial-gradient(1.8px 1.8px at 14% 72%, rgba(255,255,255,.85) 60%, transparent 62%),
+    radial-gradient(2px 2px at 26% 28%, rgba(255,255,255,.88) 60%, transparent 62%),
+    radial-gradient(1.5px 1.5px at 34% 82%, rgba(255,255,255,.85) 60%, transparent 62%),
+    radial-gradient(2px 2px at 48% 17%, rgba(255,255,255,.9) 60%, transparent 62%),
+    radial-gradient(1.6px 1.6px at 58% 62%, rgba(255,255,255,.82) 60%, transparent 62%),
+    radial-gradient(2px 2px at 74% 28%, rgba(255,255,255,.92) 60%, transparent 62%),
+    radial-gradient(1.7px 1.7px at 84% 83%, rgba(255,255,255,.86) 60%, transparent 62%),
+    radial-gradient(2px 2px at 92% 18%, rgba(255,255,255,.9) 60%, transparent 62%),
+    radial-gradient(1.5px 1.5px at 66% 9%, rgba(255,255,255,.8) 60%, transparent 62%),
+    radial-gradient(1.8px 1.8px at 11% 49%, rgba(255,255,255,.86) 60%, transparent 62%),
+    radial-gradient(2px 2px at 39% 51%, rgba(255,255,255,.9) 60%, transparent 62%),
+    radial-gradient(1.4px 1.4px at 63% 41%, rgba(255,255,255,.8) 60%, transparent 62%),
+    radial-gradient(1.8px 1.8px at 88% 54%, rgba(255,255,255,.86) 60%, transparent 62%),
+    radial-gradient(2px 2px at 24% 94%, rgba(255,255,255,.84) 60%, transparent 62%);
+  opacity:.9;
+}
+body::after{
+  background:
+    radial-gradient(circle at 22% 78%, rgba(255,255,255,.08), transparent 16%),
+    radial-gradient(circle at 79% 32%, rgba(255,255,255,.07), transparent 18%),
+    radial-gradient(circle at 56% 56%, rgba(255,255,255,.04), transparent 20%);
+  filter:blur(14px);
+}
+main{
+  position:relative;
+  z-index:1;
+  max-width:1280px;
+  margin:auto;
+  padding:38px 16px 64px;
+}
+header{
+  text-align:center;
+  margin-bottom:20px;
+}
+header .eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  padding:8px 14px;
+  border:1px solid rgba(203,221,255,.18);
+  border-radius:999px;
+  background:rgba(255,255,255,.05);
+  color:#d6e5ff;
+  font-size:13px;
+  font-weight:900;
+  letter-spacing:.06em;
+  backdrop-filter:blur(12px);
+}
+h1{
+  margin:14px 0 10px;
+  font-size:clamp(32px,5vw,54px);
+  letter-spacing:-.055em;
+  line-height:1.06;
+  text-shadow:0 0 18px rgba(118,143,255,.18);
+}
+header p{
+  margin:0 auto;
+  max-width:760px;
+  color:var(--sub);
+  line-height:1.75;
+}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:28px;
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.25),
+    inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter:blur(18px) saturate(120%);
+  -webkit-backdrop-filter:blur(18px) saturate(120%);
+}
+.hero-card{
+  padding:28px 24px 30px;
+  overflow:hidden;
+  position:relative;
+}
+.hero-card::before,
+.hero-card::after{
+  content:"";
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+.hero-card::before{
+  width:240px;height:240px;
+  right:-65px;top:-75px;
+  background:radial-gradient(circle at 35% 35%, rgba(120,228,255,.4), rgba(80,96,255,.08) 55%, transparent 72%);
+}
+.hero-card::after{
+  width:180px;height:180px;
+  left:-48px;bottom:-52px;
+  background:radial-gradient(circle at 50% 50%, rgba(255,115,184,.28), rgba(141,92,255,.06) 55%, transparent 75%);
+}
+.hero-title{
+  text-align:center;
+  margin-bottom:18px;
+}
+.hero-title .mini{
+  color:#a5bbff;
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:.08em;
+}
+.hero-title h2{
+  margin:8px 0 8px;
+  font-size:clamp(24px,4vw,36px);
+  letter-spacing:-.04em;
+}
+.hero-title p{
+  margin:0;
+  color:var(--sub);
+  line-height:1.65;
+}
+.stage-wrap{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:18px;
+}
+.stage{
+  width:100%;
+  min-height:300px;
+  position:relative;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  isolation:isolate;
+}
+.stage .orbit{
+  position:absolute;
+  border:1px solid rgba(170,192,255,.14);
+  border-radius:50%;
+}
+.stage .orbit.one{width:260px;height:260px}
+.stage .orbit.two{width:360px;height:180px;transform:rotate(-12deg)}
+.stage .orbit.three{width:320px;height:320px;transform:rotate(28deg)}
+.aura{
+  position:absolute;
+  width:310px;height:310px;border-radius:50%;
+  background:
+    radial-gradient(circle, rgba(255,238,166,.22) 0, rgba(130,251,233,.18) 35%, rgba(141,92,255,.13) 58%, transparent 74%);
+  filter:blur(2px);
+  z-index:-1;
+}
+.question{
+  position:absolute;
+  top:8px;
+  font-size:38px;
+  font-weight:1000;
+  color:#ffe48b;
+  text-shadow:0 0 14px rgba(255,210,84,.35), 0 3px 10px rgba(0,0,0,.28);
+}
+.sparkle{
+  position:absolute;
+  font-size:18px;
+  opacity:.95;
+  animation:twinkle 2.8s ease-in-out infinite;
+}
+.sparkle.s1{left:22%;top:22%}
+.sparkle.s2{right:21%;top:34%;animation-delay:.6s}
+.sparkle.s3{left:30%;bottom:20%;animation-delay:1.2s}
+.sparkle.s4{right:28%;bottom:18%;animation-delay:1.7s}
+@keyframes twinkle{0%,100%{transform:scale(.9);opacity:.55}50%{transform:scale(1.18);opacity:1}}
+.gift{
+  position:relative;
+  width:206px;
+  height:214px;
+  transform-origin:center 82%;
+  filter:drop-shadow(0 22px 20px rgba(0,0,0,.32));
+  will-change:transform;
+}
+.box-base{
+  position:absolute;
+  bottom:4px;
+  left:15px;
+  width:176px;
+  height:146px;
+  background:linear-gradient(135deg,#77d1ff 0%, #7a6dff 48%, #ff72b5 100%);
+  border-radius:12px 12px 22px 22px;
+  box-shadow:inset -18px -8px rgba(71,42,157,.34), inset 0 1px 0 rgba(255,255,255,.26);
+}
+.box-base::after{
+  content:"";
+  position:absolute;
+  left:69px;top:0;
+  width:38px;height:100%;
+  background:linear-gradient(180deg,#fff5c9,#ffe07f);
+  box-shadow:0 0 12px rgba(255,218,102,.18);
+}
+.lid{
+  position:absolute;
+  left:0;top:46px;
+  width:206px;height:48px;
+  background:linear-gradient(180deg,#90dfff 0%, #9679ff 45%, #ff89c3 100%);
+  border-radius:12px;
+  box-shadow:inset -12px -4px rgba(78,45,167,.34), inset 0 1px 0 rgba(255,255,255,.22);
+  z-index:2;
+  transform-origin:38px 38px;
+}
+.lid::after{
+  content:"";
+  position:absolute;
+  left:83px;top:0;
+  height:48px;width:39px;
+  background:linear-gradient(180deg,#fff4bf,#ffd970);
+}
+.bow{
+  position:absolute;
+  top:-4px;
+  left:58px;
+  font-size:87px;
+  line-height:1;
+  z-index:4;
+  transform:rotate(-6deg);
+  filter:drop-shadow(0 6px 8px rgba(0,0,0,.18));
+}
+.gift.shaking{animation:shake .16s infinite alternate}
+.gift.opening{animation:jump .53s ease-out forwards}
+.gift.opening .lid{animation:lidup .65s ease forwards}
+.gift.opening .bow{animation:bowup .65s ease forwards}
+@keyframes shake{from{transform:translateX(-8px) rotate(-6deg)}to{transform:translateX(8px) rotate(6deg)}}
+@keyframes jump{30%{transform:translateY(-30px) scale(1.07)}100%{transform:translateY(14px) scale(.94)}}
+@keyframes lidup{100%{transform:translate(-34px,-118px) rotate(-28deg);opacity:0}}
+@keyframes bowup{100%{transform:translate(-20px,-120px) rotate(-25deg);opacity:0}}
+.countdown{
+  font-weight:900;
+  font-size:22px;
+  color:#ffd977;
+  min-height:30px;
+  text-shadow:0 0 16px rgba(255,217,119,.18);
+}
+.result-box{
+  width:min(100%,560px);
+  margin:0 auto;
+  padding:18px 16px;
+  text-align:center;
+  border-radius:24px;
+  background:linear-gradient(180deg, rgba(255,255,255,.09), rgba(255,255,255,.05));
+  border:1px solid rgba(200,214,255,.18);
+}
+.result-emoji{font-size:40px;display:block;height:48px}
+.result-hint{font-size:13px;color:#c9d5f1;margin:4px 0}
+.result{font-size:clamp(28px,4.2vw,42px);letter-spacing:-.045em;font-weight:1000;margin:6px 0;overflow-wrap:anywhere}
+.tag{
+  display:inline-block;
+  background:linear-gradient(180deg, rgba(103,235,214,.24), rgba(90,185,255,.16));
+  color:#dcfff5;
+  border:1px solid rgba(139,245,218,.22);
+  border-radius:999px;
+  font-size:12px;
+  font-weight:850;
+  padding:7px 13px;
+}
+.hero-actions{text-align:center}
+.primary{
+  background:linear-gradient(135deg,#7f63ff,#30c4ff 48%, #68ffd7 100%);
+  border:0;
+  color:#07122a;
+  border-radius:18px;
+  padding:16px 30px;
+  font-weight:1000;
+  font-size:18px;
+  box-shadow:0 14px 28px rgba(88,113,255,.25);
+}
+.title{font-size:19px;font-weight:950;margin:0 0 14px;letter-spacing:-.02em}
+.panels{
+  display:grid;
+  grid-template-columns:1fr 1fr 1.24fr;
+  gap:18px;
+  margin-top:20px;
+  align-items:start;
+}
+.panel{
+  padding:22px;
+  min-height:100%;
+}
+.filters{display:flex;flex-wrap:wrap;gap:10px}
+.chip{
+  border:1px solid rgba(189,205,255,.22);
+  background:rgba(255,255,255,.06);
+  color:#dfe9ff;
+  border-radius:999px;
+  padding:11px 16px;
+  font-weight:850;
+  cursor:pointer;
+}
+.chip.active{
+  background:linear-gradient(135deg, rgba(127,99,255,.92), rgba(48,196,255,.92));
+  color:white;
+  border-color:transparent;
+  box-shadow:0 8px 18px rgba(90,120,255,.22);
+}
+button,input,select{font:inherit}
+button{cursor:pointer;transition:transform .15s, filter .15s, opacity .15s}
+button:not(:disabled):hover{transform:translateY(-2px);filter:brightness(1.04)}
+button:disabled{opacity:.57;cursor:not-allowed}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid rgba(109,233,255,.55);outline-offset:2px}
+.form-row{display:flex;gap:8px;flex-wrap:wrap}
+input,select{
+  border:1px solid rgba(195,212,255,.18);
+  background:rgba(255,255,255,.08);
+  padding:12px 13px;
+  border-radius:14px;
+  color:#f2f5ff;
+  min-width:0;
+}
+input::placeholder{color:#a8b5d7}
+input{flex:1;min-width:120px}
+select{width:110px}
+.secondary{
+  border:1px solid rgba(195,212,255,.2);
+  border-radius:14px;
+  background:rgba(255,255,255,.08);
+  color:#ecf3ff;
+  padding:11px 14px;
+  font-weight:850;
+}
+.feedback{font-size:13px;min-height:20px;color:#8ff9d9;margin:10px 1px}
+.feedback.error{color:#ffb6ca}
+.list{max-height:336px;overflow:auto;display:flex;flex-wrap:wrap;align-content:start;gap:8px;padding-right:4px}
+.pill{
+  display:flex;align-items:center;gap:5px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(200,214,255,.12);
+  border-radius:12px;padding:7px 8px 7px 11px;
+  font-size:13px;font-weight:760;
+}
+.remove{
+  border:0;
+  background:rgba(255,255,255,.14);
+  border-radius:50%;width:23px;height:23px;line-height:22px;
+  color:#f0f5ff;font-size:17px;
+}
+.muted{color:#b5c1df;font-size:13px;line-height:1.7}
+.footer{margin:18px 4px 0;text-align:center}
+.sr{position:absolute;width:1px;height:1px;clip:rect(0,0,0,0);overflow:hidden;white-space:nowrap}
+#confetti{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:20}
+.scroll-note{display:block;margin-top:8px;color:#92a3d6;font-size:12px}
+@media (max-width:1080px){
+  .panels{grid-template-columns:1fr 1fr}
+  .panels .panel:last-child{grid-column:1 / -1}
+}
+@media (max-width:760px){
+  main{padding:26px 14px 52px}
+  .hero-card{padding:22px 14px 24px}
+  .panels{grid-template-columns:1fr}
+  .panel{padding:18px}
+  .stage{min-height:266px}
+  .gift{transform:scale(.92)}
+  .question{top:2px}
+}
+@media (prefers-reduced-motion:reduce){
+  .gift.shaking,.gift.opening,.gift.opening .lid,.gift.opening .bow,.sparkle{animation:none}
+}
+</style>
+</head>
+<body>
+<canvas id="confetti" aria-hidden="true"></canvas>
+<main>
+  <header>
+    <div class="eyebrow">🌌 신비로운 우주 점심 추첨</div>
+    <h1>오늘 점심은 선물상자에서! 🎁</h1>
+    <p>총 <strong>105가지 점심 메뉴</strong> 중에서 랜덤으로 추천해 주는 오프라인 웹앱이야. 우주 한가운데서 선물상자를 흔들고, 펑! 하고 오늘의 메뉴를 만나봐 ✨</p>
+  </header>
+
+  <section class="card hero-card">
+    <div class="stage-wrap">
+      <div class="stage">
+        <div class="orbit one" aria-hidden="true"></div>
+        <div class="orbit two" aria-hidden="true"></div>
+        <div class="orbit three" aria-hidden="true"></div>
+        <div class="aura" aria-hidden="true"></div>
+        <div class="sparkle s1" aria-hidden="true">✦</div>
+        <div class="sparkle s2" aria-hidden="true">✦</div>
+        <div class="sparkle s3" aria-hidden="true">✦</div>
+        <div class="sparkle s4" aria-hidden="true">✦</div>
+        <div class="question" id="question">?</div>
+        <div class="gift" id="gift" aria-hidden="true">
+          <div class="bow">🎀</div>
+          <div class="lid"></div>
+          <div class="box-base"></div>
+        </div>
+      </div>
+
+      <div class="countdown" id="countdown">두구두구… 🎵</div>
+
+      <div class="result-box" aria-live="polite" aria-atomic="true">
+        <span class="result-emoji" id="emoji">✨</span>
+        <div class="result-hint" id="hint">과연 오늘의 점심 메뉴는?</div>
+        <div class="result" id="result">선물상자를 열어 봐!</div>
+        <span class="tag" id="resultCat">추첨 전</span>
+      </div>
+
+      <div class="hero-actions">
+        <button class="primary" id="draw" type="button">🎁 선물상자 열기!</button>
+      </div>
+      <p class="muted" style="text-align:center;margin:0">한 번 누르면 상자가 흔들리고, 약 3초 뒤 펑! 메뉴가 등장해요.</p>
+    </div>
+  </section>
+
+  <section class="panels">
+    <section class="card panel">
+      <h2 class="title">① 어떤 점심이 끌려요?</h2>
+      <div class="filters" id="filters"></div>
+      <p class="muted" style="margin:14px 0 0">전체 또는 음식 종류를 골라서 추첨 대상을 좁힐 수 있어.</p>
+    </section>
+
+    <section class="card panel">
+      <h2 class="title">② 나만의 메뉴 추가</h2>
+      <form id="addForm">
+        <div class="form-row">
+          <label class="sr" for="name">메뉴 이름</label>
+          <input id="name" placeholder="예: 연어포케" maxlength="30" required>
+          <label class="sr" for="cat">종류</label>
+          <select id="cat"></select>
+          <button class="secondary add" id="addButton" type="submit">＋ 메뉴 추가</button>
+        </div>
+      </form>
+      <div class="feedback" id="feedback" role="status"></div>
+      <button class="secondary" id="reset" type="button">↺ 기본 105개로 초기화</button>
+      <p class="muted" style="margin:14px 0 0">직접 넣은 메뉴도 즉시 추첨 대상에 포함돼.</p>
+    </section>
+
+    <section class="card panel">
+      <h2 class="title">③ 후보 메뉴 <span id="count"></span></h2>
+      <div class="list" id="list"></div>
+      <span class="scroll-note">많을 때는 아래로 스크롤해서 확인해 줘.</span>
+      <p class="muted" style="margin:10px 0 0">선택한 종류의 메뉴만 표시돼요. × 버튼으로 개별 삭제할 수 있어요.</p>
+    </section>
+  </section>
+
+  <p class="muted footer">※ 기본 105개는 가상 예시 메뉴입니다. 주변 식당·영업시간을 조회하지 않는 오프라인 앱으로, 서버나 API 없이 작동합니다. 추가·삭제한 내용은 이 탭을 새로고침하면 초기화됩니다.</p>
+</main>
+<script>
+'use strict';
+const defaults=[{"name":"순두부찌개","category":"한식"},{"name":"국밥","category":"한식"},{"name":"비빔밥","category":"한식"},{"name":"쌈밥","category":"한식"},{"name":"김치찌개","category":"한식"},{"name":"된장찌개","category":"한식"},{"name":"부대찌개","category":"한식"},{"name":"청국장","category":"한식"},{"name":"육개장","category":"한식"},{"name":"갈비탕","category":"한식"},{"name":"설렁탕","category":"한식"},{"name":"삼계탕","category":"한식"},{"name":"감자탕","category":"한식"},{"name":"뼈해장국","category":"한식"},{"name":"제육볶음","category":"한식"},{"name":"오징어볶음","category":"한식"},{"name":"불고기백반","category":"한식"},{"name":"고등어구이","category":"한식"},{"name":"보쌈정식","category":"한식"},{"name":"낙지덮밥","category":"한식"},{"name":"닭갈비","category":"한식"},{"name":"칼국수","category":"한식"},{"name":"짜장면","category":"중식"},{"name":"마라탕","category":"중식"},{"name":"볶음밥","category":"중식"},{"name":"짬뽕","category":"중식"},{"name":"간짜장","category":"중식"},{"name":"쟁반짜장","category":"중식"},{"name":"볶음짬뽕","category":"중식"},{"name":"짬뽕밥","category":"중식"},{"name":"잡채밥","category":"중식"},{"name":"마파두부덮밥","category":"중식"},{"name":"유산슬밥","category":"중식"},{"name":"고추잡채밥","category":"중식"},{"name":"탕수육","category":"중식"},{"name":"깐풍기","category":"중식"},{"name":"유린기","category":"중식"},{"name":"꿔바로우","category":"중식"},{"name":"양장피","category":"중식"},{"name":"마라샹궈","category":"중식"},{"name":"탄탄면","category":"중식"},{"name":"우육면","category":"중식"},{"name":"딤섬","category":"중식"},{"name":"초밥","category":"일식"},{"name":"돈가스","category":"일식"},{"name":"우동","category":"일식"},{"name":"가츠동","category":"일식"},{"name":"규동","category":"일식"},{"name":"오야코동","category":"일식"},{"name":"사케동","category":"일식"},{"name":"텐동","category":"일식"},{"name":"장어덮밥","category":"일식"},{"name":"카레라이스","category":"일식"},{"name":"카레우동","category":"일식"},{"name":"돈코츠라멘","category":"일식"},{"name":"쇼유라멘","category":"일식"},{"name":"미소라멘","category":"일식"},{"name":"냉모밀","category":"일식"},{"name":"자루소바","category":"일식"},{"name":"토마토소바","category":"일식"},{"name":"야키소바","category":"일식"},{"name":"오코노미야키","category":"일식"},{"name":"치킨난반","category":"일식"},{"name":"함박스테이크 정식","category":"일식"},{"name":"파스타","category":"양식"},{"name":"피자","category":"양식"},{"name":"샌드위치","category":"양식"},{"name":"함박스테이크","category":"양식"},{"name":"찹스테이크","category":"양식"},{"name":"함박오므라이스","category":"양식"},{"name":"오므라이스","category":"양식"},{"name":"리소토","category":"양식"},{"name":"라자냐","category":"양식"},{"name":"뇨키","category":"양식"},{"name":"그라탱","category":"양식"},{"name":"미트볼","category":"양식"},{"name":"치킨스테이크","category":"양식"},{"name":"바비큐폭립","category":"양식"},{"name":"수제버거","category":"양식"},{"name":"치킨버거","category":"양식"},{"name":"핫도그","category":"양식"},{"name":"브리토","category":"양식"},{"name":"타코","category":"양식"},{"name":"퀘사디아","category":"양식"},{"name":"치킨시저샐러드","category":"양식"},{"name":"김밥","category":"기타"},{"name":"떡볶이","category":"기타"},{"name":"쌀국수","category":"기타"},{"name":"분짜","category":"기타"},{"name":"반미","category":"기타"},{"name":"팟타이","category":"기타"},{"name":"팟씨유","category":"기타"},{"name":"똠얌꿍","category":"기타"},{"name":"카오팟","category":"기타"},{"name":"푸팟퐁커리","category":"기타"},{"name":"나시고렝","category":"기타"},{"name":"미고렝","category":"기타"},{"name":"인도식 치킨커리","category":"기타"},{"name":"탄두리치킨","category":"기타"},{"name":"케밥","category":"기타"},{"name":"샤브샤브","category":"기타"},{"name":"월남쌈","category":"기타"},{"name":"라볶이","category":"기타"},{"name":"물냉면","category":"기타"},{"name":"비빔냉면","category":"기타"}];
+const cats=['전체','한식','중식','일식','양식','기타'];
+const icons={한식:'🍚',중식:'🥟',일식:'🍣',양식:'🍝',기타:'🍜'};
+let menus=defaults.map(x=>({...x})),chosen='전체',last='',busy=false;
+const $=id=>document.getElementById(id);
+const pool=()=>chosen==='전체'?menus:menus.filter(x=>x.category===chosen);
+const timers=[];
+function after(ms,fn){const timer=setTimeout(fn,ms);timers.push(timer)}
+function feedback(s,error=false){$('feedback').textContent=s;$('feedback').classList.toggle('error',error)}
+function result(emoji,hint,name,cat){$('emoji').textContent=emoji;$('hint').textContent=hint;$('result').textContent=name;$('resultCat').textContent=cat}
+function render(){
+  $('filters').replaceChildren();
+  cats.forEach(cat=>{const b=document.createElement('button');b.type='button';b.className='chip'+(cat===chosen?' active':'');b.textContent=cat;b.disabled=busy;b.setAttribute('aria-pressed',String(cat===chosen));b.onclick=()=>{chosen=cat;render();resetDisplay()};$('filters').append(b)});
+  $('list').replaceChildren();const list=pool();
+  list.forEach(item=>{const tag=document.createElement('div');tag.className='pill';const label=document.createElement('span');label.textContent=`${icons[item.category]} ${item.name}`;const remove=document.createElement('button');remove.type='button';remove.className='remove';remove.textContent='×';remove.disabled=busy;remove.setAttribute('aria-label',item.name+' 삭제');remove.onclick=()=>{menus=menus.filter(x=>x!==item);render();feedback(item.name+' 메뉴를 삭제했어요.')};tag.append(label,remove);$('list').append(tag)});
+  if(!list.length){const p=document.createElement('p');p.className='muted';p.textContent='후보가 없어요. 메뉴를 추가하거나 종류를 변경해 주세요.';$('list').append(p)}
+  $('count').textContent=`(${list.length}개 / 전체 ${menus.length}개)`;
+  $('draw').disabled=busy;
+  $('reset').disabled=busy;
+  $('name').disabled=busy;
+  $('cat').disabled=busy;
+  $('addButton').disabled=busy;
+}
+function resetDisplay(){const gift=$('gift');gift.classList.remove('opening','shaking');$('question').textContent='?';$('countdown').textContent='두구두구… 🎵';result('✨','과연 오늘의 점심 메뉴는?','선물상자를 열어 봐!',chosen==='전체'?'추첨 전':chosen)}
+function spin(){if(busy)return;const candidates=pool();if(!candidates.length){feedback('후보가 없어요! 메뉴를 추가해 주세요.',true);return}busy=true;render();feedback('');resetDisplay();$('gift').classList.add('shaking');$('countdown').textContent='두구… 🥁';result('🎁','선물상자가 흔들리는 중','기대해 주세요!',chosen);
+  let eligible=candidates.filter(x=>x.name!==last);if(!eligible.length)eligible=candidates;
+  const picked=eligible[Math.floor(Math.random()*eligible.length)];
+  after(950,()=>{$('countdown').textContent='두구두구두구… 🥁'});
+  after(2000,()=>{$('countdown').textContent='3… 2… 1… 💫'});
+  after(3000,()=>{$('gift').classList.remove('shaking');$('gift').classList.add('opening');$('question').textContent='🎉';$('countdown').textContent='펑!!! 🎊';result(icons[picked.category],'🎉 오늘의 점심 당첨!',picked.name,picked.category);last=picked.name;confetti();});
+  after(3680,()=>{busy=false;render();});}
+$('draw').addEventListener('click',spin);
+$('addForm').addEventListener('submit',e=>{e.preventDefault();if(busy)return;const name=$('name').value.trim();const category=$('cat').value;if(!name){feedback('메뉴 이름을 입력해 주세요.',true);return}if(menus.some(m=>m.name.toLowerCase()===name.toLowerCase())){feedback('이미 등록된 메뉴예요.',true);return}menus.push({name,category});$('name').value='';chosen=category;render();resetDisplay();feedback('✅ '+name+' 메뉴가 추가됐어요!');$('name').focus()});
+$('reset').addEventListener('click',()=>{if(busy)return;menus=defaults.map(x=>({...x}));chosen='전체';last='';render();resetDisplay();feedback('기본 105개 메뉴로 초기화했어요.')});
+cats.slice(1).forEach(cat=>{const option=document.createElement('option');option.value=cat;option.textContent=cat;$('cat').append(option)});
+const canvas=$('confetti'),ctx=canvas.getContext('2d');let bits=[],frame=0;
+function resize(){const dpr=window.devicePixelRatio||1;canvas.width=Math.round(innerWidth*dpr);canvas.height=Math.round(innerHeight*dpr);ctx.setTransform(dpr,0,0,dpr,0,0)}
+function confetti(){resize();cancelAnimationFrame(frame);const colors=['#f8769c','#ffca46','#4fcdb7','#8fb6ff','#a88bec','#f68b53'];bits=Array.from({length:155},()=>({x:innerWidth/2,y:innerHeight*.34,vx:(Math.random()-.5)*14,vy:-Math.random()*11-3,g:.13+Math.random()*.13,r:Math.random()*6+4,a:1,c:colors[Math.floor(Math.random()*colors.length)],angle:Math.random()*6}));tick()}
+function tick(){ctx.clearRect(0,0,innerWidth,innerHeight);bits.forEach(p=>{p.x+=p.vx;p.y+=p.vy;p.vy+=p.g;p.a-=.009;p.angle+=.12;ctx.save();ctx.globalAlpha=Math.max(0,p.a);ctx.translate(p.x,p.y);ctx.rotate(p.angle);ctx.fillStyle=p.c;ctx.fillRect(-p.r/2,-p.r/2,p.r,p.r*.65);ctx.restore()});bits=bits.filter(p=>p.a>0&&p.y<innerHeight+30);if(bits.length)frame=requestAnimationFrame(tick);else ctx.clearRect(0,0,innerWidth,innerHeight)}
+window.addEventListener('resize',resize);resize();render();resetDisplay();
+</script>
+</body>
+</html>
